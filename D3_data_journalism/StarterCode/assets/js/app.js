@@ -25,7 +25,7 @@ var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 //create promise function to read data
-d3.csv("data.csv").then(function(readData){
+d3.csv("assets/data/data.csv").then(function(readData){
     //parse through data
     readData.forEach(data => {
         data.income = +data.income;
