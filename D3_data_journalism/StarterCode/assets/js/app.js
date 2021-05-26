@@ -56,6 +56,26 @@ d3.csv("assets/data/data.csv").then(function(readData){
     chartGroup.append("g")
         .call(leftAxis);
 
-    
+    //create scatter plot points
+    var circlesGroup = chartGroup.selectAll("circle")
+        .data(readData)
+        .enter()
+        .append("circle")
+        .attr("cx", d => xLinearScale(d.income))
+        .attr("cy", d => yLinearScale(d.obesity))
+        .attr("r", "15")
+        .attr("fill", "blue")
+        .attr("opacity", ".25");
+
+    //create tool tip
+    var toolTip = d3.tip()
+        .attr("class", "tooltip")
+        .offset([80,-60])
+        .html(function(d) {
+            return (`${d.state} <br> Median Income: ${d.income} <br> Obesity Rate: ${d.obesity}`)
+
+        });
+
+    //add tooltip to chart
 
 })
